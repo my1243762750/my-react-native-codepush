@@ -30,15 +30,15 @@ codePush.sync(
         // updateDialog: true,
         updateDialog: {
             // 是否显示更新描述
-            // appendReleaseDescription: true,
+            appendReleaseDescription: true,
             // 更新描述的前缀
-            // descriptionPrefix: '更新内容:',
+            descriptionPrefix: '更新内容:',
             title: '升级提示',
             mandatoryContinueButtonLabel: '立即更新',
-            mandatoryUpdateMessage: '最新版本已经为您准备好，迎接更出色的用户体验',
-            // optionalUpdateMessage: '可选更新',
-            // optionalIgnoreButtonLabel: '忽略',
-            // optionalInstallButtonLabel: '更新',
+            mandatoryUpdateMessage: '最新版本已经为您准备好，来High吧',
+            optionalUpdateMessage: '可选更新',
+            optionalIgnoreButtonLabel: '忽略',
+            optionalInstallButtonLabel: '更新',
         },
         installMode: codePush.InstallMode.IMMEDIATE,
         checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
