@@ -64,7 +64,7 @@ function App(): JSX.Element {
                 <Header/>
                 <View>
                     <Text>react native code push</Text>
-                    <Text>haha 001</Text>
+                    <Text>haha 002</Text>
                 </View>
             </ScrollView>
         </SafeAreaView>
