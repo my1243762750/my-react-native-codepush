@@ -9,6 +9,7 @@
     "archive-ios": "xcodebuild -workspace ios/AwesomeProject.xcworkspace -scheme AwesomeProject -configuration Release -sdk iphoneos -archivePath ./build/AwesomeProject.xcarchive clean archive",
     "build-ios": "xcodebuild -exportArchive -archivePath ./build/AwesomeProject.xcarchive -exportPath ./build/AwesomeProject.ipa -exportOptionsPlist ./ios/AwesomeProject/exportOptions.plist",
     "package-ios": "yarn bundle-ios && yarn archive-ios && yarn build-ios",
+    "package-android": "cd android && ./gradlew assembleRelease",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest"
