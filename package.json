@@ -5,6 +5,10 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "bundle-ios": "react-native bundle --platform ios --entry-file index.js --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
+    "archive-ios": "xcodebuild -workspace ios/AwesomeProject.xcworkspace -scheme AwesomeProject -configuration Release -sdk iphoneos -archivePath ./build/AwesomeProject.xcarchive clean archive",
+    "build-ios": "xcodebuild -exportArchive -archivePath ./build/AwesomeProject.xcarchive -exportPath ./build/AwesomeProject.ipa -exportOptionsPlist ./ios/AwesomeProject/exportOptions.plist",
+    "package-ios": "yarn bundle-ios && yarn archive-ios && yarn build-ios",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest"

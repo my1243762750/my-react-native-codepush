@@ -1,15 +1,3 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
-
-# Getting Started
-
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
-
-## Step 1: Start the Metro Server
-
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
-
-To start Metro, run the following command from the _root_ of your React Native project:
-
 ```bash
 # using npm
 npm start
@@ -42,38 +30,35 @@ npm run ios
 yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### 打包ios
+1、通过xcode打开<项目名称>.xcodeproj，在右侧tab页找到Signing & Capabilities，
+把自己的Bundle Identifier如xxx.com.meiyang886放进入，xxx是组织的名称也是成为苹果开发者的团队id（如何成为苹果开发者，请查询相关教程），
+com.meiyang886是你的域名，可以随意写。
+2、在/Users/apple/IdeaProjects/my-react-native/ios/AwesomeProject路径下（请找到你的项目名/ios/ios项目名），新建一个exportOptions.plist文件，代码如下
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>method</key>
+    <string>development</string> <!-- 可根据需要调整为 app-store, ad-hoc, enterprise development 等 -->
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+    <key>teamID</key>
+    <string>C6CS3D7Q2R</string> <!-- 替换为你的开发团队的 Team ID -->
 
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+    <key>provisioningProfiles</key>
+    <dict>
+        <key>C6CS3D7Q2R.com.meiyang886</key>
+        <string>yang mei</string> <!-- 替换为你的应用程序的 Bundle Identifier 和配置文件的名称 -->
+    </dict>
+</dict>
+</plist>
+```
+3、在项目/package.json下面的scripts选项添加如下命令：
+"bundle-ios": "react-native bundle --platform ios --entry-file index.js --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
+"archive-ios": "xcodebuild -workspace ios/AwesomeProject.xcworkspace -scheme AwesomeProject -configuration Release -sdk iphoneos -archivePath ./build/AwesomeProject.xcarchive clean archive",
+"build-ios": "xcodebuild -exportArchive -archivePath ./build/AwesomeProject.xcarchive -exportPath ./build/AwesomeProject.ipa -exportOptionsPlist ./ios/AwesomeProject/exportOptions.plist",
+"package-ios": "yarn bundle-ios && yarn archive-ios && yarn build-ios",
+其中AwesomeProject.xcworkspace 或 AwesomeProject.xcarchive 中的AwesomeProject 需要替换为你的ios项目名称。

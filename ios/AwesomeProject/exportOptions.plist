@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>method</key>
+    <string>development</string> <!-- 可根据需要调整为 app-store, ad-hoc, enterprise development 等 -->
+
+    <key>teamID</key>
+    <string>C6CS3D7Q2R</string> <!-- 替换为你的开发团队的 Team ID -->
+
+    <key>provisioningProfiles</key>
+    <dict>
+        <key>C6CS3D7Q2R.com.meiyang886</key>
+        <string>yang mei</string> <!-- 替换为你的应用程序的 Bundle Identifier 和配置文件的名称 -->
+    </dict>
+</dict>
+</plist>
