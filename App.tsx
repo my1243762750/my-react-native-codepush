@@ -16,7 +16,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 const codePushOptions = {
-  deploymentKey: 'viKRrXsn32KpOLjZVV0SdiZ0WJz0g4U7R1tB1',
+  // deploymentKey: 'viKRrXsn32KpOLjZVV0SdiZ0WJz0g4U7R1tB1',
   updateDialog: true,
   installMode: codePush.InstallMode.IMMEDIATE,
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
@@ -28,7 +28,7 @@ const codePushSyncCallback = (status: string) => {
 
 codePush.sync(
     {
-      deploymentKey: 'viKRrXsn32KpOLjZVV0SdiZ0WJz0g4U7R1tB1',
+      // deploymentKey: 'viKRrXsn32KpOLjZVV0SdiZ0WJz0g4U7R1tB1',
       // updateDialog: true,
       updateDialog: {
         // 是否显示跟新描述
