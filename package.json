@@ -1,6 +1,6 @@
 {
   "name": "AwesomeProject",
-  "version": "0.0.2",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -11,8 +11,9 @@
     "bundle-ios": "react-native bundle --platform ios --entry-file index.js --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
     "archive-ios": "xcodebuild -workspace ios/AwesomeProject.xcworkspace -scheme AwesomeProject -configuration Release -sdk iphoneos -archivePath ./build/AwesomeProject.xcarchive clean archive",
     "build-ios": "xcodebuild -exportArchive -archivePath ./build/AwesomeProject.xcarchive -exportPath ./build/AwesomeProject.ipa -exportOptionsPlist ./ios/AwesomeProject/exportOptions.plist",
-    "package-ios": "yarn bundle-ios && yarn archive-ios && yarn build-ios",
-    "package-android": "cd android && ./gradlew assembleRelease",
+    "package-ios": "yarn sync-ios-version && yarn bundle-ios && yarn archive-ios && yarn build-ios",
+    "package-android": "yarn sync-android-version && cd android && ./gradlew clean  && ./gradlew assembleRelease",
+    "build": "yarn package-ios && yarn package-android",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest"
