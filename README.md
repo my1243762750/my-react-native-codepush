@@ -46,11 +46,11 @@ com.meiyang886是你的域名，可以随意写。
     <string>development</string> <!-- 可根据需要调整为 app-store, ad-hoc, enterprise development 等 -->
 
     <key>teamID</key>
-    <string>C6CS3D7Q2R</string> <!-- 替换为你的开发团队的 Team ID -->
+    <string>C6CS3DRRWR</string> <!-- 替换为你的开发团队的 Team ID -->
 
     <key>provisioningProfiles</key>
     <dict>
-        <key>C6CS3D7Q2R.com.meiyang886</key>
+        <key>C6CS3DRRWR.com.meiyang886</key>
         <string>yang mei</string> <!-- 替换为你的应用程序的 Bundle Identifier 和配置文件的名称 -->
     </dict>
 </dict>
