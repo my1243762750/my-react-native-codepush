@@ -96,3 +96,39 @@ com.meiyang886是你的域名，可以随意写。
     - 执行该命令后，将生成一个用于发布到 App Store 或者分发测试的 IPA 文件。
 
 综上所述，这三个命令共同组成了 React Native 应用在 iOS 平台上的完整打包和发布流程，确保应用能够顺利地在设备上运行并且符合 App Store 的要求。
+
+### 打包android
+1、生成签名密钥
+    - 命令：`$ keytool -genkeypair -v -storetype PKCS12 -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000`，最后它会生成一个叫做my-release-key.keystore的密钥库文件
+2、设置 gradle 变量
+   1、把my-release-key.keystore文件放到你工程中的android/app文件夹下。
+   2、编辑~/.gradle/gradle.properties（全局配置，对所有项目有效）或是项目目录/android/gradle.properties（项目配置，只对所在项目有效）。如果没有gradle.properties文件你就自己创建一个，添加如下的代码（注意把其中的****替换为相应密码）
+      MYAPP_RELEASE_STORE_FILE=my-release-key.keystore
+      MYAPP_RELEASE_KEY_ALIAS=my-key-alias
+      MYAPP_RELEASE_STORE_PASSWORD=*****
+      MYAPP_RELEASE_KEY_PASSWORD=*****
+3、编辑你项目目录下的android/app/build.gradle，添加如下的签名配置：
+```
+android {
+    ...
+    defaultConfig { ... }
+    signingConfigs {
+        release {
+            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                storeFile file(MYAPP_RELEASE_STORE_FILE)
+                storePassword MYAPP_RELEASE_STORE_PASSWORD
+                keyAlias MYAPP_RELEASE_KEY_ALIAS
+                keyPassword MYAPP_RELEASE_KEY_PASSWORD
+            }
+        }
+    }
+    buildTypes {
+        release {
+            ...
+            signingConfig signingConfigs.release
+        }
+    }
+}
+```
+4、在项目/package.json下面的scripts选项添加如下命令：
+"package-android": "cd android && ./gradlew assembleRelease",
