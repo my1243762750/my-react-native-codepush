@@ -67,7 +67,11 @@ npm install react-native-code-push --save
      }
      ```
 
-#### 5. 打包 APK 或 IPA 到 App Center 上面去
+#### 5. ios 的相关配置
+1. 修改 `AppDelegate.m` 文件，添加 `#import <CodePush/CodePush.h>` 
+2. 将 `return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];`修改为 `return [CodePush bundleURL];`
+
+#### 6. 打包 APK 或 IPA 到 App Center 上面去
 1. **检查登录状态：**
    使用以下命令来查看当前是否已登录到 App Center CLI：
    ```bash
