@@ -68,6 +68,24 @@ npm install react-native-code-push --save
      ```
 
 #### 5. 打包 APK 或 IPA 到 App Center 上面去
+1. **检查登录状态：**
+   使用以下命令来查看当前是否已登录到 App Center CLI：
+   ```bash
+   appcenter profile list
+   ```
+   这会列出所有已登录的 App Center 账号信息，包括用户名、邮箱等。
 
-（此步骤具体实现根据项目需求配置）
+2. **切换账号：**
+   如果需要切换到另一个 App Center 账号，可以使用以下命令注销当前账号：
+   ```bash
+   appcenter logout
+   ```
+   然后再使用 `appcenter login` 命令登录到另一个账号。
+
+3. **确认登录账号：**
+   登录成功后，可以使用 `appcenter profile list` 命令再次检查，确认已经登录到了正确的账号。
+
+4. 在项目根目录下，创建makefile文件，里面放入如下代码 
+   codepush-android:
+      appcenter codepush release-react -a 1243762750-qq.com/basic-android-app -d Production
 ```
